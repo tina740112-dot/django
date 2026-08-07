@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% for data in persons %}
+  <h2>第{{ forloop.counter }}位</h2>
+  <ul>
+    <li>姓名:{{data.name}}</li>
+    <li>電話:{{data.phone}}</li>
+    <li>年齡:{{data.age}}</li>
+  </ul>
+  {% empty %}
+  <p>沒有資料</p>
+  
+  
+  
+  {% endfor %}
+</body>
+</html>

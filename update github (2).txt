@@ -1,0 +1,27 @@
+當你有一個全新的專案資料夾，想要放到全新的 GitHub 儲存庫時，
+請先到 GitHub 網站點右上角 + ＞ New repository 建立一個新儲存庫（輸入名稱、選擇公開/私有，不要勾選任何初始化選項），
+接著在 VS Code 打開終端機（Terminal），依序輸入以下指令：
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/tina740112-dot/python(要改成你自己的網址).git
+git push -u origin main
+二、 日常寫完程式後「更新/上傳」的步驟
+以後每次你在電腦裡寫了新程式、修改了內容，想要更新上去 GitHub 時，只需要在 VS Code 終端機依序執行這簡單的 4 個指令：
+
+git status
+git add .
+git commit -m "更新說明"
+git push
+
+情況 A：另一台電腦要更新
+1.打開 VS Code 或終端機，切換到你要存放資料夾的位置。
+
+2.執行指令將專案下載回來（請換成你自己的儲存庫網址）：
+
+git clone https://github.com/tina740112-dot/python.git
+
+情況 B：這台電腦已經有舊專案，想同步 GitHub 上最新的程式碼
+
+git pull
