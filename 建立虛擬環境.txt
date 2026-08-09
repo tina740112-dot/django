@@ -1,0 +1,136 @@
+1.檢查 Python 版本（可有可無，確認版本）：
+
+python --version
+
+2.安裝虛擬環境工具（若已安裝可略過）：
+
+pip install virtualenv
+
+3.建立虛擬環境（筆記以 dvds 為例，你的作業若有需要也可以換成自己的名稱）：
+
+cd c:\
+virtualenv dvds
+
+4.啟動虛擬環境：
+
+cd dvds
+Scripts\activate
+(啟動後跳出新頁，命令提示字元前方會出現 (dvds))
+
+5.安裝 Django：
+
+pip install Django
+(可輸入 pip list 確認 Django 是否安裝成功)
+
+6.建立專案（筆記示範 project1，你的作業請改為 homework2）：
+
+django-admin startproject homework2
+
+7.進入專案並建立 App：
+
+cd homework2
+python manage.py startapp myapp
+
+8.建立靜態與樣版資料夾：
+
+mkdir templates
+mkdir static
+
+9.設定 settings.py 檔案
+用 VS Code 打開專案，找到 homework2/settings.py 進行以下設定：
+
+第28 或27行 ALLOWED_HOSTS = ['*']
+
+註冊 App（大約在第 40 或 41 行的 INSTALLED_APPS 裡面新增）：
+INSTALLED_APPS = [ 
+    'django.contrib.admin', 
+    'django.contrib.auth', 
+    'django.contrib.contenttypes', 
+    'django.contrib.sessions', 
+    'django.contrib.messages', 
+    'django.contrib.staticfiles', 
+    'myapp', 
+] 
+
+第57or 58行
+TEMPLATES = [ 
+ 
+    { 
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', 
+        'DIRS': [BASE_DIR / 'templates'], 
+        'APP_DIRS': True,
+
+第107/108行
+LANGUAGE_CODE = 'zh-Hant'
+TIME_ZONE = 'Asia/Taipei'
+
+第119行
+STATIC_URL = 'static/' 
+STATICFILES_DIRS = [ 
+BASE_DIR / 'static', 
+]
+
+10.資料庫遷移與啟動伺服器
+回到 VS Code 的終端機（Terminal），確認前方有虛擬環境提示字元，然後執行：
+建立資料庫遷移檔：
+python manage.py makemigrations
+執行資料庫遷移：
+python manage.py migrate
+
+會出現很多ok
+
+11.啟動伺服器（指定連接埠 8080）：
+
+python manage.py runserver 0.0.0.0:8080
+最後打開瀏覽器，輸入網址 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)... 就可以連線測試了！
+
+12點vs code上方的run->startdebbuging ->DJANGO -> manage.py
+
+或是下面的方法
+
+12.建立 .vscode 資料夾與設定檔：
+
+在你的專案根目錄（homework2）底下，新增一個名為 .vscode 的資料夾。
+
+在 .vscode 資料夾裡面，新增一個名為 launch.json 的檔案。
+
+填入以下設定內容：
+將這段專門給 Django / Python 使用的組態複製貼上到 launch.json 裡面：
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8080"
+            ],
+            "django": true,
+            "jinja": true,
+            "justMyCode": true
+        }
+    ]
+}
+
+
+
+存檔後測試：
+設定好存檔之後，回到你的程式碼畫面，再次按下 F5，這時候它就會直接採用這個設定，在底下的終端機自動幫你把伺服器跑起來囉！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

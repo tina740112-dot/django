@@ -1,0 +1,114 @@
+1. 啟動你原本的虛擬環境
+不用再重新建立虛擬環境了，直接把它叫出來開啟：
+cd c:\
+dvds\Scripts\activate
+
+(只要確保終端機最前面有出現 (dvds)，就代表工具箱已經打開了！)
+
+2. 建立全新的專案
+因為你已經在 (dvds) 環境裡，裡面本來就安裝過 Django 了，所以不用再打 pip install django。直接建立新專案即可：
+
+django-admin startproject homework3
+
+3. 進入新專案開始工作
+
+cd homework3
+python manage.py startapp myapp
+
+4.建立靜態與樣版資料夾：
+mkdir templates
+mkdir static
+
+
+5.設定 settings.py 檔案
+用 VS Code 打開專案，找到 專案名稱/settings.py 進行以下設定：
+
+第28 或27行 ALLOWED_HOSTS = ['*']
+
+註冊 App（大約在第 40 或 41 行的 INSTALLED_APPS 裡面新增）：
+INSTALLED_APPS = [ 
+    'django.contrib.admin', 
+    'django.contrib.auth', 
+    'django.contrib.contenttypes', 
+    'django.contrib.sessions', 
+    'django.contrib.messages', 
+    'django.contrib.staticfiles', 
+    'myapp', 
+] 
+
+第57or 58行
+TEMPLATES = [ 
+ 
+    { 
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', 
+        'DIRS': [BASE_DIR / 'templates'], 
+        'APP_DIRS': True,
+
+第107/108行
+LANGUAGE_CODE = 'zh-Hant'
+TIME_ZONE = 'Asia/Taipei'
+
+第119行
+STATIC_URL = 'static/' 
+STATICFILES_DIRS = [ 
+BASE_DIR / 'static', 
+]
+
+6..資料庫遷移與啟動伺服器
+回到 VS Code 的終端機（Terminal），確認前方有虛擬環境提示字元，
+\scripts\avtu
+然後執行：
+建立資料庫遷移檔：
+python manage.py makemigrations
+執行資料庫遷移：
+python manage.py migrate
+
+會出現很多ok
+
+7..啟動伺服器（指定連接埠 8080）：
+在終端機打如下:
+
+python manage.py runserver 0.0.0.0:8080
+
+最後打開瀏覽器，輸入網址 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)... 就可以連線測試了！
+
+8.點vs code上方的run->startdebbuging ->DJANGO -> manage.py
+
+8.另一個方法建 .vscode在專案名稱下面，.vscdoe裡面要有lauch.json，如果沒有的話直接建立，launch.json檔裡面放以下:
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8080"
+            ],
+            "django": true,
+            "jinja": true,
+            "justMyCode": true
+        }
+    ]
+}
+
+
+
+存檔後測試：
+設定好存檔之後，回到你的程式碼畫面，再次按下 F5，這時候它就會直接採用這個設定，在底下的終端機自動幫你把伺服器跑起來囉！
+
+
+
+
+
+
+
+
+
+
+
+
+

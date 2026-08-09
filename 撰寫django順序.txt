@@ -1,0 +1,88 @@
+1.先寫urls.py(後端)(python語法)
+
+urlpatterns = [在這行下面開始連接想串接的網址跟圖片
+    path('', views.index, name='index'), #以這個為範例，
+    path('admin/', admin.site.urls),
+    # path('', views.sayhello),
+    path('hello1/<str:username>/', views.hello1),
+    path('hello2/<str:username>/', views.hello2),
+    path('hello3/<str:username>/', views.hello3),
+    path('hello4/<str:username1>/<str:username2>/',views.hello4),
+    path('dicel/',views.dicel),
+ 
+
+有連view的話，記得view的內容要寫好
+
+2.進入views.py(後端) (views.py 裡面寫的全部都是 Python 語法。)
+
+ from django.shortcuts import render
+ from django.http import HttpResponse
+
+從下面開始寫，下面都是範例
+
+# 一定要小寫 def 開頭，後面接你在 urls.py 寫的名稱 (about)
+
+def sayhello(request):(先確認有沒有回應)
+    # 直接回傳一段文字給瀏覽器
+    return HttpResponse("Hello Django! 我的 View 成功運作囉！")
+
+確認伺服器啟動：在終端機輸入 python manage.py runserver 讓專案跑起來。
+
+打開瀏覽器：輸入你對應的網址（例如 http://127.0.0.1:8000/hello/）。
+
+查看結果：如果瀏覽器畫面上直接顯示了 Hello Django! 我的 View 成功運作囉！
+
+
+def hello1(request,username):
+    print(username)
+    return HttpResponse(f"<b>Hello {username}!!!!!</b>")
+  
+from datetime import datetime
+def hello2(request,username):
+    print(f'username:{username}')#print username
+    now = datetime.now()#make time now
+    print(f'now:{now}')#print time now
+    # return HttpResponse('Hello')
+    return render(request,'hello2.html',locals())#將變數傳給模板
+
+def hello3(request,username):
+    print(f'username:{username}')#print username
+    now_dt = datetime.now()#make time now
+    now = f"民國{now_dt.year - 1911}年{now_dt.month:02d}月{now_dt.day:02d}日 {now_dt.hour:02d}:{now_dt.minute:02d}:{now_dt.second:02d}"
+    print(f'now:{now}')#print time now
+    # return HttpResponse('Hello')
+    return render(request,'hello3.html',locals())#將變數傳給模板
+    
+def hello4(request, username1, username2):
+    # print(username1)
+    # print(username2)
+    return HttpResponse("Hello "+ username1 + " "+username2)
+  
+import random(加入亂碼)
+
+def dicel(request):
+    no1 = random.randint(1,6)
+    no2 = random.randint(1,6)
+    no3 = random.randint(1,6)
+    print(f'no1:{no1}, no2:{no2}, no3:{no3}')
+    #return render(request, 'dice1.html', locals())#將變數傳給模板
+    return render(request, 'dice1.html', {'no1': no1, 'no2': no2, 'no3': no3})#將變數傳給模板，跟上面的寫法一樣，是正統的寫法
+
+3.建立html檔(前端)
+在Django 專案中建立一個資料夾（通常叫 templates），並在裡面新增你的網頁檔案（例如 index.html）。
+html一定要放在templates下面
+先打驚嘆號再按enter會跳出基本模型
+
+  <!DOCTYPE html>：宣告這是一個 HTML5 網頁。
+
+<html> 與 </html>：整個網頁的最外層容器。
+
+<head>：放網頁的設定（例如網頁標題 <title>、編碼 utf-8 等，這部分通常不會直接顯示在畫面上）。
+
+<body>：網頁的本體，所有使用者看得到的文字、圖片、按鈕都要寫在這裡。
+
+標題標籤 (<h1> 到 <h6>)：用來設定標題大小，<h1> 最大，<h6> 最小。
+
+
+
+

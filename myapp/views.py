@@ -55,4 +55,22 @@ def dice3(request):
   persons=[]#模擬無資料
   return render(request, 'dice3.html', {'persons': persons})
 
+def lotto1(request):
+    import random
+    numbers=[]
+    for i in range (6):
+        lotto1=random.randint(1,42)
+        numbers.append(lotto1)
+    return render(request, 'lotto1.html', {'numbers': numbers})
 
+
+def lotto2(request):
+    import random
+
+    groups = []
+    for i in range(6):
+        # 從 1 到 42 中，隨機抽出 6 個「不重複」的數字，並從小到大排序
+        numbers = sorted(random.sample(range(1, 43), 6))
+        groups.append(numbers)
+
+    return render(request, 'lotto2.html', {'groups': groups})
