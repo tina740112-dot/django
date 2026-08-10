@@ -60,3 +60,13 @@ def lotto1(request):
     print(num_list)
   
     return render(request, 'lotto1.html', locals())
+  
+def lotto2(request):
+    random_num_list=[]
+    for i in range(1,7):
+      num_list=random.sample(range(1,43), 6) 
+      #print(num_list)
+      num_list=sorted(num_list)#sort the list
+      random_num_list.append(num_list)
+      print(random_num_list)
+    return render(request, 'lotto2.html', locals())
