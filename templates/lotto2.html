@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <title>樂透號碼</title>
+</head>
+
+<body>
+  <h2>產生的樂透號碼為：</h2>
+
+  {% for numbers in groups %}
+  <p style="font-size: 20px; font-weight: bold;">
+    第{{ forloop.counter }}組：{{ numbers|join:", " }}
+  </p>
+  {% endfor %}
+</body>
+
+</html>

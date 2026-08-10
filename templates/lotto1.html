@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <title>樂透號碼</title>
+</head>
+
+<body>
+  <h1>產生的樂透號碼為:</h1>
+  <h1>
+      {{ num_list.0 }}
+      {{ num_list.1 }}
+      {{ num_list.2 }}
+      {{ num_list.3 }}
+      {{ num_list.4 }}
+  </h1> 
+  <h1>產生的樂透號碼為:</h1>
+  <h1>
+      {% for data in num_list %}
+          {{ data }}
+      {% endfor %}
+  </h1>
+
+
+
+
+</body>
+
+</html>

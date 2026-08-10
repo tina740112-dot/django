@@ -55,4 +55,8 @@ def dice3(request):
   persons=[]#模擬無資料
   return render(request, 'dice3.html', {'persons': persons})
 
-
+def lotto1(request):
+    num_list = random.sample(range(1,6), 5)
+    print(num_list)
+  
+    return render(request, 'lotto1.html', locals())

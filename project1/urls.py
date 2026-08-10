@@ -29,6 +29,7 @@ urlpatterns = [
     path('dicel/',views.dicel),
     path('dice2/',views.dice2),
     path('dice3/',views.dice3),
-
+    path('lotto1/',views.lotto1),
+   # path('lotto2/',views.lotto2),
 
 ]
