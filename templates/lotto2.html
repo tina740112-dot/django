@@ -1,25 +1,118 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="zh-TW">
-
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>樂透號碼</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樂透號碼</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 30px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* 每一組一列 */
+        .lotto-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 第X組 */
+        .lotto-title {
+            width: 110px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        /* 球的區域 */
+        .lotto-balls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 單顆球 */
+        .ball {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            transition: transform 0.2s ease;
+        }
+
+        .ball:hover {
+            transform: scale(1.1);
+        }
+
+        /* 球圖片 */
+        .ball img {
+            width: 50px;
+            height: 50px;
+            display: block;
+        }
+
+        /* 球上的數字 */
+        .ball .num {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 1px 1px 3px black;
+            pointer-events: none;
+        }
+
+        /* 手機版 */
+        @media (max-width: 768px) {
+            .lotto-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .lotto-title {
+                width: auto;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <h1>樂透號碼</h1>
-  {% for num_list in random_num_list %}
-  {% comment %} <h1>{{ num_list }}</h1> {% endcomment %}
-  <h1>
-      第{{ forloop.counter }}組號碼：
-       {% for num in num_list %}
-          {{ num }}
-          {% if not forloop.last %}
-             ,
-          {% endif %}
-       {% endfor %}
-  {% endfor %}
-  
-</body>
+    <h1>產生的樂透號碼為：</h1>
 
+    {% for random_num_list in random_num_lists %}
+        <div class="lotto-row">
+            <div class="lotto-title">
+                第{{ forloop.counter }}組：
+            </div>
+
+            <div class="lotto-balls">
+                {% for random_num in random_num_list %}
+                    <div class="ball">
+                        <img src="{% static 'image/small_ball_30.png' %}" alt="樂透球">
+                        <span class="num">{{ random_num }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</body>
 </html>

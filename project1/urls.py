@@ -31,4 +31,8 @@ urlpatterns = [
     path('dice3/',views.dice3),
     path('lotto1/',views.lotto1),
     path('lotto2/', views.lotto2,name='lotto2'),
+    path('get1/',views.get1),
+    path('get2/',views.get2),
+    path('get3/<str:mode>/',views.get3),
+    
 ]

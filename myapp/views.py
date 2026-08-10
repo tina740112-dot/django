@@ -1,3 +1,5 @@
+from unicodedata import name
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -62,11 +64,50 @@ def lotto1(request):
     return render(request, 'lotto1.html', locals())
   
 def lotto2(request):
-    random_num_list=[]
+    random_num_lists=[]
     for i in range(1,7):
       num_list=random.sample(range(1,43), 6) 
       #print(num_list)
       num_list=sorted(num_list)#sort the list
-      random_num_list.append(num_list)
-      print(random_num_list)
+      random_num_lists.append(num_list)
+      print(random_num_lists)
     return render(request, 'lotto2.html', locals())
+  
+from django.shortcuts import render
+
+def get1(request):
+   # name=request.GET['name']
+   #city=request.GET['city']
+   #basic-07.py
+   #透過get()方法
+    name = request.GET.get('name',None) #如果沒有name參數，則預設為"no name"
+    city = request.GET.get('city',None) #若沒有city參數，則預設為"no city"
+    print(f'name:{name}, city:{city}')
+   # return HttpResponse("hello,get1")
+    return render(request, 'get1.html', {'name': name, 'city': city})
+ 
+def get2(request):
+    try:
+        name = request.GET['name']
+        city = request.GET['city']
+        status = True
+        print(f'name:{name}, city:{city}')
+    except:
+        status = False
+    print(f'status:{status}')
+    return render(request, 'get2.html', locals())
+  
+def get3(request, mode):
+    print(f'mode:{mode}')
+    if mode =='save':
+        username=request.GET.get('username',None)
+        password=request.GET.get('password',None) 
+        print(f'username:{username}, password:{password}')
+        
+        password ='*'*(len(password) - 3) + password[-3:]
+        return render(request, 'get3.html', locals())
+        
+    elif mode =='load':
+            return render(request, 'get3.html', locals())
+              
+              
