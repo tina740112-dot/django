@@ -109,5 +109,21 @@ def get3(request, mode):
         
     elif mode =='load':
             return render(request, 'get3.html', locals())
-              
-              
+
+def post1(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', None).strip()#去除前後空白
+        password = request.POST.get('password', None).strip()#去除前後空白
+        print(f'username:{username}, password:{password}')
+        if username == 'admin' and password == '123456':
+            #return HttpResponse('登入成功')
+            status = True
+
+        else:
+           # return HttpResponse('登入失敗')
+            status = False
+        return render(request, 'post1_response.html', {'status': status, 'username': username})
+    else:
+        # return render('hello post1')
+        return render(request, 'post1.html',locals())
+    
