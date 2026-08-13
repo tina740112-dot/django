@@ -127,3 +127,12 @@ def post1(request):
         # return render('hello post1')
         return render(request, 'post1.html',locals())
     
+def post2(request):
+  if request.method=='POST':
+    items=request.POST.getlist('items',None)
+    print(items)
+    #return HttpResponse("送出資料")
+    return render(request, 'post2_response.html', locals())
+  else:
+    return render(request, 'post2.html', locals())
+  

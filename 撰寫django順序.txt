@@ -86,3 +86,4 @@ html一定要放在templates下面
 
 
 
+python manage.py runserver 0.0.0.0:8080

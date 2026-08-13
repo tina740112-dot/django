@@ -7,7 +7,8 @@
 </head>
 <body>
   <form action="/post1/" method="post">
-    {% csrf_token %}
+    {% csrf_token %} <!--有送出表單的話，django會檢查csrf_token是否正確，若不正確就會報錯，所以一定要加上這行-->
+  
     <div>
         <label for='username'>帳號:</label>
         <input type="text" name="username" id="username">
