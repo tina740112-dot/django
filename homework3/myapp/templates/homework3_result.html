@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>結果顯示</title>
+</head>
+<body style="background-color: #d1fce8;">
+
+    <h2>{{ name }}{{ title }}</h2>
+    
+    <p>您喜歡的活動如下：</p>
+    <ul>
+        {% for hobby in hobbies %}
+            <li>{{ hobby }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
