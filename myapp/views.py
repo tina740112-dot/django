@@ -135,4 +135,7 @@ def post2(request):
     return render(request, 'post2_response.html', locals())
   else:
     return render(request, 'post2.html', locals())
+def homework3(request):
+    
+    return render('hello home3')
   
